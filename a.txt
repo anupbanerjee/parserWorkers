@@ -1,0 +1,58 @@
+package com.test.jms.consumer;
+
+public class StaticExample {
+
+    public static String getHello(){
+        return "Hello Anup!";
+    }
+}
+
+
+package com.test.jms.consumer;
+
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+
+import static org.powermock.api.mockito.PowerMockito.when;
+
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(StaticExample.class)
+public class StaticExampleTest {
+    @Test
+    public void test() {
+        PowerMockito.mockStatic(StaticExample.class);
+
+        when(StaticExample.getHello()).thenReturn("Hello Mock!");
+
+        assert(StaticExample.getHello().equals("Hello Mock!"));
+    }
+}
+
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>2.0.5-beta</version>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-api-mockito</artifactId>
+            <version>1.6.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-module-junit4</artifactId>
+            <version>1.6.2</version>
+            <scope>test</scope>
+        </dependency>
